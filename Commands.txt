@@ -1,0 +1,107 @@
+!ahcache - application compatibility cache
+!alignmentfaults  - type alignment faults
+!apc - display an asynchronous procedure call
+	!apc proc Process
+	!apc thre Thread
+	!apc KAPC
+!apicerr [format]- display the local programmable interrupt controller error log
+	0x0 - chronological
+	0x1 - by processor
+!arbinst {Address} [flags] - display an arbiter
+	0x100 - display aliases
+!arbiter [flags] - display resource arbiters and arbitrated ranges
+!bcb {Address} - display the buffer control block
+!blockeddrv - display a list of blocked drivers
+!bpid [options] PID - requests the debugger to break into a process remotely
+	-a Attaches a new user mode debugger
+	-s Adds a breakpoint before the action
+	-w stores the request in memory on remote computer
+!bugdump - displays the bug check callback data
+!bushnd - display Hardware bus handlers
+!ca [Address | 0 | -1] [Flags] - display control area information
+	0 - all control areas
+	-1 - unused segment list 
+	0x1 - Display segment information.
+	0x2 - Display subsection information.
+	0x4 - Display the list of mapped views. (Windows 7 and later)
+	0x8 - Display compact (single line) output.
+	0x10 - Display file-backed control areas.
+	0x20 - Display control areas backed by the page file.
+	0x40 - Display image control areas.
+!callback {Address} [Number] - display the callback data related to the trap for the thread
+	The callback frame number
+!calldata Table - display procedure call statistics from the named table
+!can_write_dump - verifies there's enough space to dump the kernel on a remote host
+!cbreg [%%]Address - display cardbus socket registers
+		%% - physical address vs virtual
+!cchelp - help on cache manager extensions
+!chklowmem - check memory > 4Gb when booted with /pae or /nolowmem options
+!cmreslist {Address} - display CM_Resource_List structure
+!cpuinfo [processor] - display info about a CPU
+!db [Caching] [-m] [PhysicalAddress] [L Size] 
+!dc [Caching] [-m] [PhysicalAddress] [L Size] 
+!dd [Caching] [-m] [PhysicalAddress] [L Size] 
+!dp [Caching] [-m] [PhysicalAddress] [L Size] 
+!dq [Caching] [-m] [PhysicalAddress] [L Size] 
+!du [Caching] [-m] [PhysicalAddress] [L Size] 
+!dw [Caching] [-m] [PhysicalAddress] [L Size] 
+	caching - surround in square brackets, 
+		c - read from cached memory
+		uc - read from uncached memory
+		wc - read from write combined memory
+	-m  - read one unit at a time
+	L - the number of chunks of memory to display
+		db - ascii 128 bytes
+		dc - 32 dwords and ascii
+		dd - 32 dwords
+		dp - ulong pointers 32/64 bit 128 bytes
+		dq - ulong pointers 64 bit 128 bytes
+		du - 16 unicode characters
+		dw - word values, 64 dwords 128 bytes
+!dbgprint - display a string sent to DbgPrint buffer
+!dblink Address [Count] [Bias] - display a linked list backwards
+!dflink Address [Count] [Bias] - display a linked list forwards	
+	count - number of entries
+	bias - number of bits to ignore preceding entries
+!deadlock - display deadlock detections from driver verifier
+!defwrites - display kernel variables from cache manager
+!devext {Address} [TypeCode]- display bus specific device extension information
+		TypeCode - ISAPNP, PCMCIA, HID
+!devhandles {Address}- display open handles for a specified device
+!devnode {Address} [Verbosity] {Service}- display information about a node in the device tree
+!devobj {DeviceObject} - display information about a device
+!devstack - display device stack associated with a device object
+!diskspace {Drive:} - display free space
+!dma {Address} [Verbosity] - display direct memory access information
+!dpa - display pool allocation information
+!dpcs [Processor] - display deferred procedure call information for a processor
+!driveinfo {Drive:}- display disk information
+!drvobj DriverObject - display devices attached to a driver
+!dskheap [-v] [-s SessionID] - display desktop session heap information
+	-v - verbose
+!eb [Flag] PhysicalAddress Data [ ... ] 
+!ed [Flag] PhysicalAddress Data [ ... ]
+		c - write to cached memory
+		uc - write to uncached memory
+		wc - write to write combined memory
+!ec Bus.Device.Function Offset Data
+		Bus can range from 0 to 0xFF.
+		Slot device number for the device.
+		Slot function number for the device.
+		The offset for the address at which to write.
+!errlog - display any pending entries in the I/O system error log
+!errpkt {Address} - displays a windows hardware error packets info
+!errec {Address} - display a windows hardware error record
+!exca BasePort.SocketNumber - display PC-Card interrupt registers
+!filecache [flags] - display file system cache memory and page table entry use
+!filelock {Address} - display a file lock structure
+!fileobj {Address} - display information on a file object
+!filetime {Time} - convert a 64bit filetime into human readable time
+!finddata {Address} {Offset} - display data in an object at an offset
+!findfilelockowner {Address} - find the owner of a file object lock
+!findthreads [-v][-t  <Thread Address>|-i <IRP Address>|-d <Device Address>|( -a <Pointer Address> -e <End Address> | -l <Range Length>)]
+!for_each_process ["command string"] - loop a command to each process
+!for_each_thread ["command string"] - loop a command to each thread
+!fpsearch {Address} - searches the freed pool for an address
+!frozen - displays the state of each frozen processor
+!fxdevice - display information about power management devices
