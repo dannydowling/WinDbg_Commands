@@ -105,3 +105,69 @@
 !fpsearch {Address} - searches the freed pool for an address
 !frozen - displays the state of each frozen processor
 !fxdevice - display information about power management devices
+!gbl [-v Verbose] - display Root System Description Table
+!gentable {Address} [Flag] - display a runtime library generic table
+	Flag: 1 - AVL Table is used
+	Flag: 0 - non-AVL Table is used
+!hidppd {Address} - display HIDP_Preparsed_Data structure
+ib, id, iw - input from port command
+!icpleak [Flag] - examines all I/O completion objects for the longest queue
+		Handle Flag: if set displays processes with a handle to the object
+!idt [option]- display interrupt service routines from an interrupt dispatch table
+		IDT - specifies the IDT to display
+		blank - gives a summary of all IDT's
+		-a - displays verbose information
+!ih [Processor] - displays interrupt history for a processor
+!ioresdes {Address} - display an IO_Resource_Descriptor
+!ioctldecode IoctlCode - displays Device Type, Required Access specified by an IO Control Code from !irp
+!ioreslist {Address}- displays an IO_Resource_List structure
+!iovirp {Address} - displays information about an IO verifier IO request packet from Driver Verifier
+!ipi - display interprocessor interrupt information
+!irp {Address} [1]- display information about an IO request packet 
+	Detail: 1 - if included the output contains owning thread, memory descriptor and stack info
+!irpfind [-v][PoolType[RestartAddress[CriteriaData]]] - display information about all IO request packets
+!irql [Processor]- display the interrupt request level of a processor
+!isainfo [Card] - display info about PNPISA devices in the system
+	Card - if omitted, all devices are displayed
+!job [Process [Flags]]- displays a job object
+	Process - The address of the job object
+	Flag: 0x1 - display job settings and statistics
+	Flag: 0x2 - display list of all processes in the job
+kb, kv - display stack backtrace command
+!loadermemorylist ListHeadAddress - display the memory allocation list that windows bootloader passes to windows
+!lockedpages [Process] - display driver locked pages for a specified process
+!locks - display information about kernel EResource locks
+!logonsession LUID - display information about a specified logon session
+!lookaside - displays information about lookaside lists
+!mca - diplay the machine check architecture registers
+!memlist Flag- scans the physical memory lists from the page frame number database to check consistency
+	Flag: 0x1 - zeroed pages list is verified
+!memusage Flag - display memory usage information
+	Flag: 0x0 - displays a detailed description of pages in page frame number database
+	Flag: 0x1 - summary about modified no-write pages in page frame number database
+	Flag: 0x2 - details about modified no-write pages in page frame number database
+	Flag: 0x8 - general summary about memory use
+!mps {Address} - display bios information for the intel multiprocessor specification, requires HAL symbols
+!mtrr - display the contents of the MTRR register
+!npx Address - display the contents of the floating point register save area
+ob, od, ow - output to port command
+!object {Path/Name/Address} [Flag] {-p} - display information about a system object
+	-p - display private object namespaces
+	Flag: 0x0 - display object type
+	Flag: 0x1 - type, name and reference counts
+	Flag: 0x8 - contents of directory or target of symbolic link
+	Flag: 0x10 - display object headers
+	Flag: 0x20 - display full path to object
+!obtrace {pointer} - display object reference tracing data
+!openmaps {Address}  - display referenced buffer control blocks and virtual address control blocks for shared cache map
+!pat - display page attribute table registers for a processor
+!pci - displays the status of the PCI buses and devices attached to those buses
+!pciir - displays the contents of the hardware routing of PCI devices to interrupt controller inputs
+!pcitree - display information about pci device objects
+!pfn {PageFrame} - dispay information about a specific page frame or the entire page frame da
+!powertriage - display power summary and device power related components
+!pnpevent - display a tree of all device events in the queue
+!pocaps - display power capabilities of target computer
+!pool {Address} - display information about specific pool allocation or system wide pool
+	Address: -1 - display information about all heaps in the process
+	Address: 0 - display information about the process heap
