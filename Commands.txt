@@ -21,13 +21,13 @@
 !ca [Address | 0 | -1] [Flags] - display control area information
 	0 - all control areas
 	-1 - unused segment list 
-	0x1 - Display segment information.
-	0x2 - Display subsection information.
-	0x4 - Display the list of mapped views. (Windows 7 and later)
-	0x8 - Display compact (single line) output.
-	0x10 - Display file-backed control areas.
-	0x20 - Display control areas backed by the page file.
-	0x40 - Display image control areas.
+	1 - Display segment information.
+	2 - Display subsection information.
+	3 - Display the list of mapped views. (Windows 7 and later)
+	4 - Display compact (single line) output.
+	5 - Display file-backed control areas.
+	6 - Display control areas backed by the page file.
+	7 - Display image control areas.
 !callback {Address} [Number] - display the callback data related to the trap for the thread
 	The callback frame number
 !calldata Table - display procedure call statistics from the named table
@@ -131,8 +131,8 @@ ib, id, iw - input from port command
 	Card - if omitted, all devices are displayed
 !job [Process [Flags]]- displays a job object
 	Process - The address of the job object
-	Flag: 0x1 - display job settings and statistics
-	Flag: 0x2 - display list of all processes in the job
+	Flag: 1 - display job settings and statistics
+	Flag: 2 - display list of all processes in the job
 kb, kv - display stack backtrace command
 !loadermemorylist ListHeadAddress - display the memory allocation list that windows bootloader passes to windows
 !lockedpages [Process] - display driver locked pages for a specified process
@@ -141,33 +141,130 @@ kb, kv - display stack backtrace command
 !lookaside - displays information about lookaside lists
 !mca - diplay the machine check architecture registers
 !memlist Flag- scans the physical memory lists from the page frame number database to check consistency
-	Flag: 0x1 - zeroed pages list is verified
+	Flag: 1 - zeroed pages list is verified
 !memusage Flag - display memory usage information
-	Flag: 0x0 - displays a detailed description of pages in page frame number database
-	Flag: 0x1 - summary about modified no-write pages in page frame number database
-	Flag: 0x2 - details about modified no-write pages in page frame number database
-	Flag: 0x8 - general summary about memory use
+	Flag: 0 - displays a detailed description of pages in page frame number database
+	Flag: 1 - summary about modified no-write pages in page frame number database
+	Flag: 2 - details about modified no-write pages in page frame number database
+	Flag: 4 - general summary about memory use
 !mps {Address} - display bios information for the intel multiprocessor specification, requires HAL symbols
 !mtrr - display the contents of the MTRR register
 !npx Address - display the contents of the floating point register save area
 ob, od, ow - output to port command
 !object {Path/Name/Address} [Flag] {-p} - display information about a system object
 	-p - display private object namespaces
-	Flag: 0x0 - display object type
-	Flag: 0x1 - type, name and reference counts
-	Flag: 0x8 - contents of directory or target of symbolic link
-	Flag: 0x10 - display object headers
-	Flag: 0x20 - display full path to object
+	Flag: 0 - display object type
+	Flag: 1 - type, name and reference counts
+	Flag: 3 - contents of directory or target of symbolic link
+	Flag: 4 - display object headers
+	Flag: 5 - display full path to object
 !obtrace {pointer} - display object reference tracing data
 !openmaps {Address}  - display referenced buffer control blocks and virtual address control blocks for shared cache map
 !pat - display page attribute table registers for a processor
 !pci - displays the status of the PCI buses and devices attached to those buses
 !pciir - displays the contents of the hardware routing of PCI devices to interrupt controller inputs
 !pcitree - display information about pci device objects
-!pfn {PageFrame} - dispay information about a specific page frame or the entire page frame da
+!pfn {PageFrame} - dispay information about a specific page frame or the entire page frame database
 !powertriage - display power summary and device power related components
 !pnpevent - display a tree of all device events in the queue
 !pocaps - display power capabilities of target computer
 !pool {Address} - display information about specific pool allocation or system wide pool
 	Address: -1 - display information about all heaps in the process
 	Address: 0 - display information about the process heap
+!poolfind {TagString} [pooltype] - finds all matching pool tags in nonpaged r paged memory pools
+!poolused [Flag [TagString]] - displays memory use summaries
+	Flag: 0 - verbose
+	Flag: 1 - sort by non paged memory use
+	Flag: 2 - sort by paged memory use
+	Flag: 3 - display session pool instead of standard pool
+!poolval {Address} - looks at headers for a pool page and corruption
+!popolicy - display the power policy
+!pplookaside - display lookaside lists for processors
+!ppmidle - display processor idle states
+!ppmidleaccounting - display processor idle state accounting
+!ppmidlepolicy - display C state policy
+!ppmlscenarios - display per scenario policy overrides
+!ppmsettings - display active ppm settings for the processsor
+!ppmstate - display power state information
+!prcb [Processor] - display the processor control block
+!process [/s Session] [/m Module] [Process [Flags]]
+	Flag: 0 - time and priority
+	Flag: 1 - threads
+	Flag: 2 - add stack tracing to threads
+	Flag: 3 - display return address for each function
+	Flag: 4 - set context to process ( .process /p /r)
+!processfields - display fields within the process
+!processirps - display IO request packets associated with a process
+!pte {Virtual Address|PTE|Literal Addres 1} - display a page table entry
+!pte2va {Address}- display a virtual address from a page table entry
+!ptov {DirBase}- display physical to virtual map for a process
+	DirBase - use !process and use the value from DirBase
+!qlocks - display the state of all queued spinlocks
+!ready - display summary information for each thread in ready state
+!reg - display and search through registry data
+!regkcb - display registry key control block
+!rellist - display plug and play relation list
+!ruleinfo {RuleId} - display a driver verifier rule
+	RuleId - first argument of DRIVER_VERIFIER_DETECTED_VIOLATION
+!running - display list of all running threads
+!scm {Address}- display a shared cache map
+!search Data - search pages in physical memory for pointer sized data
+!searchpte - searches physical memory for a page frame number
+!session [-s session number]- controls the session context or list out sessions
+!smt - displays simultaneous multithreaded processor information
+!sprocess - display information about processes within a specific session
+!srb {Address} - display SCSI request block information
+!stacks [Flag[Filter String]] - display information about kernel stacks
+	Flag: 0 - summary
+	Flag: 1 - stacks that are paged out
+	Flag: 2 - display all stacks
+	Filter String - only stacks that contain the string in their symbil
+!swd - display software watchdog timer states
+!sysinfo [Flag]- bios, acpi and cpu information
+	Flag: cpuinfo - processor information
+	Flag: cpumicrocode - initial and cached microcode versions
+	Flag: cpuspeed - max and current processor speeeds
+	Flag: gbl - bios list of ACPI tables
+	Flag: machineid - machine id information for bios, firmware and baseboard
+	Flag: registers - machine specific registers
+	Flag: smbios - smbios table
+!sysptes [verbosity] - organized view of page table entries
+!thread {Address} - display information about a thread
+!threadfields - display the names and offsets of the fields within a thread block
+!time - system time and interrupt time
+!timer - detailed list of all system timer use
+dt nt!_token - display names and offsets of fields within access token object
+.trap - display trap frame
+.tss - display task state segment
+!tz - list power thermal zones
+!tzinfo {Address} - display power thermal zone structure contents 
+!ubc {break point number} - clears a user space breakpoint
+!ubd {break point number} - disable a user space breakpoint
+!ube {break point number} - re-enable a user space break point
+!ubl - list user space break points
+!ubp {Address} - sets a user space breakpoint
+!vad {VAD Address 1} - display a tree of virtual address descriptors or more details on one address
+!vad_reload {Process} - reloads the user modules by using the virtual address descriptors
+!validatelist {Address} - verifies that forwards and backwards links are valid in doubly linked list
+!verifier - display the status of driver verifier
+!vm [Flag]- display virtual memory usage statistics 
+	Flag: 0 - without process specifics
+	Flag: 1 - with memory management thread stacks
+	Flag: 2 - with terminal server memory usage
+	Flag: 3 - with page file write log
+	Flag: 4 - with owner thread stacks
+	Flag: 5 - with kernel virtual address usage
+!vpb {Address} - display a volume parameter block  
+!vtop {DirBase} {Virtual Address} - convert a virtual address to a physical address
+	DirBase - use !process to find the base for the virtual address space of the process
+!wdmaud {Address} - display wdm audio structures
+!whattime {Ticks}- convert a tick count into standard time value
+!whatperftime {Count} - converts a high resolution performance counter value to standard time
+!whea - display top level Windows Hardware Error Architecture information
+!wsle [Flag] {Address} - display working set list entries
+	Flag: 0 - list WLSE addresses
+	Flag: 1 - include valid WSLE's
+	Flag: 2 - include free WSLE's
+!zombies [Flag] {Address to start search from} - display all dead zonbie processes or threads
+	Flag: 1 - processes
+	Flag: 2 - threads
